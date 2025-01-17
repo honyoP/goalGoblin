@@ -16,7 +16,7 @@ function App() {
     intelligence: 10,
     level: 1,
     mana: 15,
-    name: "Tadeas",
+    name: "Goblin",
     shekels: 0,
     skill_points: 0,
     stamina: 15,
