@@ -21,7 +21,7 @@ export type Character = {
     total_quests_done: number,
 }
 
-type EquipedGear = {
+export type EquipedGear = {
     head: Equipment,
     torso: Equipment,
     shoulders: Equipment,
