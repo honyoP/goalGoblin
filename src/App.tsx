@@ -21,7 +21,7 @@ function App() {
     <>
       <QuestWindow/>
       {user?.name}
-      {user? null : <CharacterCreator />}
+      {user? null : <CharacterCreator setCharacter={setUser} />}
     </>
   )
 }
