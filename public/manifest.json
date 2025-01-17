@@ -7,5 +7,7 @@
     "default_popup": "index.html",
     "default_icon": "goalGoblin.png"
   },
-  "permissions": []
+  "permissions": [
+    "storage"
+  ]
 }
