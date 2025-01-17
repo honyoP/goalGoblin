@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Storage } from './storage'
-import { Character } from './Character'
+import { Character } from './types/Character'
 
 function App() {
   const [user, setUser] = useState<Character | null>(null);
