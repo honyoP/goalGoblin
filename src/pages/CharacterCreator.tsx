@@ -36,7 +36,7 @@ const CharacterCreator = () => {
 
     return (
         <div>
-            <input value={name} onChange={event => setName(event.target.value)}>Name</input>
+            <input value={name} onChange={event => setName(event.target.value)} />
             <button type="submit" onClick={() => handleUpload(characterTemplate)}>Create new Character!</button>
         </div>
     );
