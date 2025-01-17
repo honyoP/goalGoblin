@@ -1,0 +1,10 @@
+{
+  "name": "Goal Goblin",
+  "description": "Goal Goblin is a gamified productivity",
+  "version": "0.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "goalGoblin.png"
+  }
+}
