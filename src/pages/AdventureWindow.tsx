@@ -3,8 +3,20 @@ import { useState, useEffect } from 'react';
 import Walking from '../components/Walking';
 import { Quest } from "../types/Quest";
 import { Storage } from "../storage";
+import EnemyJson from "../data/Enemy.json";
+import { useNavigate } from "react-router";
+import { Enemy } from "../types/Enemy";
 
-export default function Adventure() {
+const EnemyDb: Enemy[] = EnemyJson.map(enemy => ({
+    ...enemy,
+    damage: enemy.damage.length === 2 ? enemy.damage as [number, number] : [0, 0]
+}));
+
+type Props = {
+    setEnemy: (enemy: Enemy) => void
+}
+
+export default function Adventure({setEnemy}: Props) {
     const [questList] = useState<Quest[]>(GetQuests(5));
     const [quest, setQuest] = useState<Quest | null>(null);
 
@@ -38,7 +50,7 @@ export default function Adventure() {
 
     return (
         <div>
-            {quest ? <ActiveQuest quest={quest} /> : <QuestWindow questList={questList} setQuest={setQuest} />}
+            {quest ? <ActiveQuest quest={quest} setQuest={setQuest} setEnemy={setEnemy} /> : <QuestWindow questList={questList} setQuest={setQuest} />}
     //create subquest
         //take break
         </div>
@@ -46,11 +58,16 @@ export default function Adventure() {
 }
 
 type ActiveQuestProps = {
-    quest: Quest
+    quest: Quest,
+    setQuest: (quest: Quest | null) => void,
+    setEnemy: (enemy: Enemy) => void,
 }
 
-const ActiveQuest = ({quest}: ActiveQuestProps) => {
+const ActiveQuest = ({quest, setQuest, setEnemy}: ActiveQuestProps) => {
     const [countdown, setCountdown] = useState<string>('00:00:00');
+    const [isComplete, setIsComplete] = useState(false);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -63,6 +80,7 @@ const ActiveQuest = ({quest}: ActiveQuestProps) => {
 
             if (timeLeftInMillis <= 0) {
                 clearInterval(timer);
+                setIsComplete(true);
             } else {
                 const hours = Math.floor((timeLeftInMillis % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((timeLeftInMillis % (1000 * 60 * 60)) / (1000 * 60));
@@ -76,11 +94,28 @@ const ActiveQuest = ({quest}: ActiveQuestProps) => {
         return () => clearInterval(timer);
     }, []);
 
+    const removeQuest = async () => {
+        await Storage.remove('GoalGoblin_activeQuest');
+    }
+
+    const handleOnClickRunAway = () => {
+        removeQuest();
+        setQuest(null);
+    }
+
+    const handleOnClickComplete = () => {
+        const validEnemies: Enemy[] = EnemyDb.filter((t) => t.level <= 10);
+        setEnemy(validEnemies[Math.floor(Math.random() * validEnemies.length)]);
+        navigate('/combat');
+    }
+
     return (
         <div>
             <h2>{quest.name}</h2>
             <Walking />
             <p>{countdown}</p>
+            <button onClick={() => handleOnClickRunAway()}>Run away!</button>
+            {isComplete? <button onClick={() => handleOnClickComplete()}>Complete Quest!</button> : null}
         </div>
     );
 }
@@ -99,7 +134,7 @@ function GetQuests(n: number): Quest[] {
 }
 
 const questTimes = [
-    5,
+    1,
     15,
     30,
     60,

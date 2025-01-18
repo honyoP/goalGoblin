@@ -11,7 +11,7 @@ import BackpackView from './pages/BackpackView'
 
 function App() {
   const [user, setUser] = useState<Character | null>(null);
-  const [enemy] = useState<Enemy | null>(null);
+  const [enemy, setEnemy] = useState<Enemy | null>(null);
 
   useEffect(() => {
     loadCharacter();
@@ -26,7 +26,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<CharacterView character={user} setCharacter={setUser} />} />
-        <Route path='/adventure' element={<Adventure />} />
+        <Route path='/adventure' element={<Adventure setEnemy={setEnemy} />} />
         <Route path='/combat' element={<CombatView character={user!} enemy={enemy!}/>} />
         <Route path='/backpack' element={<BackpackView />} />
       </Routes>
