@@ -1,6 +1,7 @@
 import QuestWindow from "./QuestWindow";
 import Timer from "./Timer";
 import {useState, useEffect} from 'react';
+import Walking from './Walking';
 export default function Adventure() {
     const [actives, setActive] = useState<number[]>([0,0,0,0,0]);
     const [time, setTime] = useState<number>(0);
@@ -10,7 +11,7 @@ export default function Adventure() {
     }, [actives]);
     return <>
         //title
-        //picture
+        <Walking/>
         <Timer time={time} setTime={setTime} paused={actives.find(x => x === 1) === undefined ? true : false}/>
         <QuestWindow actives={actives} setActive={setActive}/> // into run button since i already got the logic
         //create subquest
