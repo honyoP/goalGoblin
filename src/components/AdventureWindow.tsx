@@ -25,14 +25,14 @@ export default function Adventure() {
             quest.name = "";
         }
     }, [quest]);
-    return <>
+    return <div>
         {quest.name}
         <Walking/>
         <Timer time={time} setTime={setTime} paused={actives.find(x => x === 1) === undefined ? true : false} setQuest={setQuest}/>
         <QuestWindow actives={actives} setActive={setActive} setQuest={setQuest}/> // into run button since i already got the logic
         //create subquest
         //take break
-    </>
+    </div>
 }
 const defQuest = {
     name: "",

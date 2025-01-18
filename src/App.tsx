@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { Storage } from './storage'
 import { Character } from './types/Character'
-import Adventure from './components/AdventureWindow'
-import CharacterCreator from './pages/CharacterCreator'
 import CharacterView from './pages/CharacterView'
+import Adventure from './components/AdventureWindow'
+import { MemoryRouter as Router, Routes, Route } from 'react-router'
 
 function App() {
   const [user, setUser] = useState<Character | null>(null);
@@ -19,10 +19,12 @@ function App() {
   }
 
   return (
-    <>
-      <Adventure/>
-      {user? <CharacterView character={user} /> : <CharacterCreator setCharacter={setUser} />}
-    </>
+    <Router>
+      <Routes>
+        <Route path='/' element={<CharacterView character={user} setCharacter={setUser} />} />
+        <Route path='/adventure' element={<Adventure />} />
+      </Routes>
+    </Router>
   )
 }
 
