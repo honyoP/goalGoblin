@@ -1,4 +1,4 @@
-type StorageKey = 'GoalGoblin_userCharacter';
+type StorageKey = 'GoalGoblin_userCharacter' | 'GoalGoblin_backpack';
 
 export const Storage = {
     set: <T>(key: StorageKey, value: T): Promise<void> => {

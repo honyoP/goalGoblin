@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Storage } from "../storage";
-import { Character } from "../types/Character";
+import { Backpack, Character } from "../types/Character";
 
 type Props = {
     setCharacter: (character: Character) => void,
@@ -13,6 +13,7 @@ const CharacterCreator = ({ setCharacter }: Props) => {
             setCharacter(characterTemplate);
             try {
                 await Storage.set('GoalGoblin_userCharacter', character);
+                await Storage.set('GoalGoblin_backpack', starterBackpack);
             } catch (error) {
                 console.error('Invalid JSON file:', error);
             }
@@ -45,6 +46,14 @@ const CharacterCreator = ({ setCharacter }: Props) => {
         total_quests_done: 0,
         total_shekels_earned: 0,
         total_time_spent: "",
+    }
+
+    const starterBackpack: Backpack = {
+        name: "Leather Backpack",
+        max_capacity: 20,
+        total_items: 0,
+        item_ids: [],
+        equipment_ids: [],
     }
 
     return (

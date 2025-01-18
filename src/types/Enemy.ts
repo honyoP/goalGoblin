@@ -1,11 +1,8 @@
-import { Equipment } from "./Equipment"
-import { LootTable } from "./LootTable"
-
 export type Enemy = {
     id: number,
     name: string,
-    wielded_weapon: Equipment,
-    loot_table: LootTable,
+    wielded_weapon_id: number,
+    loot_table_id: number,
 
     level: number,
     health: number,

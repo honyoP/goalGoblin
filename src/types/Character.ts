@@ -1,6 +1,3 @@
-import { Equipment } from "./Equipment"
-import { Item } from "./Item"
-
 export type Character = {
     name: string,
     level: number,
@@ -31,22 +28,22 @@ export type Character = {
 }
 
 export type EquipedGear = {
-    head: Equipment,
-    torso: Equipment,
-    shoulders: Equipment,
-    gloves: Equipment,
-    pants: Equipment,
-    boots: Equipment,
-    ring: Equipment,
-    ring2: Equipment,
-    primaryHand: Equipment,
-    secondHand: Equipment,
+    head_id: number,
+    torso_id: number,
+    shoulders_id: number,
+    gloves_id: number,
+    pants_id: number,
+    boots_id: number,
+    ring_id: number,
+    ring2_id: number,
+    primaryHand_id: number,
+    secondHand_id: number,
 }
 
 export type Backpack = {
     name: string,
     max_capacity: number,
     total_items: number,
-    items: Item[],
-    equipment: Equipment[],
+    item_ids: number[],
+    equipment_ids: number[],
 }

@@ -1,4 +1,5 @@
 export type LootTable = {
+    id: number,
     loot: Loot[], 
 }
 

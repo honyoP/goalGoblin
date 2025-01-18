@@ -1,0 +1,82 @@
+[
+  {
+    "id": 0,
+    "loot": [
+      { "chance": 50, "equipment_id": 0, "item_id": null },
+      { "chance": 30, "equipment_id": 1, "item_id": null },
+      { "chance": 20, "equipment_id": 2, "item_id": null }
+    ]
+  },
+  {
+    "id": 1,
+    "loot": [
+      { "chance": 60, "equipment_id": 3, "item_id": null },
+      { "chance": 25, "equipment_id": 4, "item_id": null },
+      { "chance": 15, "equipment_id": 5, "item_id": null }
+    ]
+  },
+  {
+    "id": 2,
+    "loot": [
+      { "chance": 40, "equipment_id": 6, "item_id": null },
+      { "chance": 35, "equipment_id": 7, "item_id": null },
+      { "chance": 25, "equipment_id": 8, "item_id": null }
+    ]
+  },
+  {
+    "id": 3,
+    "loot": [
+      { "chance": 55, "equipment_id": 9, "item_id": null },
+      { "chance": 30, "equipment_id": 0, "item_id": null },
+      { "chance": 15, "equipment_id": 1, "item_id": null }
+    ]
+  },
+  {
+    "id": 4,
+    "loot": [
+      { "chance": 50, "equipment_id": 2, "item_id": null },
+      { "chance": 30, "equipment_id": 3, "item_id": null },
+      { "chance": 20, "equipment_id": 4, "item_id": null }
+    ]
+  },
+  {
+    "id":5,
+    "loot": [
+      { "chance": 60, "equipment_id": 5, "item_id": null },
+      { "chance": 25, "equipment_id": 6, "item_id": null },
+      { "chance": 15, "equipment_id": 7, "item_id": null }
+    ]
+  },
+  {
+    "id": 6,
+    "loot": [
+      { "chance": 45, "equipment_id": 8, "item_id": null },
+      { "chance": 35, "equipment_id": 9, "item_id": null },
+      { "chance": 20, "equipment_id": 0, "item_id": null }
+    ]
+  },
+  {
+    "id": 7,
+    "loot": [
+      { "chance": 55, "equipment_id": 1, "item_id": null },
+      { "chance": 30, "equipment_id": 2, "item_id": null },
+      { "chance": 15, "equipment_id": 3, "item_id": null }
+    ]
+  },
+  {
+    "id": 8,
+    "loot": [
+      { "chance": 50, "equipment_id": 4, "item_id": null },
+      { "chance": 30, "equipment_id": 5, "item_id": null },
+      { "chance": 20, "equipment_id": 6, "item_id": null }
+    ]
+  },
+  {
+    "id": 9,
+    "loot": [
+      { "chance": 60, "equipment_id": 7, "item_id": null },
+      { "chance": 25, "equipment_id": 8, "item_id": null },
+      { "chance": 15, "equipment_id": 9, "item_id": null }
+    ]
+  }
+]
