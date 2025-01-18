@@ -1,5 +1,4 @@
 import Quest from './Quest';
-import {useState} from 'react';
 const containerStyle: React.CSSProperties = {
     display: "flex",
     flexDirection: "column",
@@ -7,11 +6,13 @@ const containerStyle: React.CSSProperties = {
 };
 
 
-export default function QuestWindow() {
-    const [actives, setActive] = useState<number[]>([0,0,0,0,0]);
+export default function QuestWindow({actives, setActive}:QuestProps ) {
     return <div style={containerStyle}>{GetQuests(5, actives, setActive)}</div>;
 }
-
+type QuestProps = {
+    actives: number[],
+    setActive:React.Dispatch<React.SetStateAction<number[]>>
+}
 function GetQuests(n:number, actives:number[], setActive:React.Dispatch<React.SetStateAction<number[]>>)
 {
     const result = [];

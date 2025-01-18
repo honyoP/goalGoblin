@@ -66,7 +66,6 @@ const disabledStyle = {
 let currentStyle = disabledStyle;
 
 function GetRandomName(currentName:MutableRefObject<string>): string {
-    console.log(resetName);
     if(resetName)
     {
         let max = names.length;

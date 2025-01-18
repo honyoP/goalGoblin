@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
-export default function Timer({timeStart, paused}:TimerProps) {
-    const [time, setTime] = useState(timeStart);
+export default function Timer({time, setTime, paused}:TimerProps) {
     useEffect(() => {
         if (paused) return;
         const interval = setInterval(() => {
-            setTime((prevTime) => {
+            setTime((prevTime:number) => {
                 return prevTime - 1;
             });
         }, 1000);
@@ -15,7 +14,8 @@ export default function Timer({timeStart, paused}:TimerProps) {
     return <p>{formatTime(time)}</p>;
 }
 type TimerProps = {
-    timeStart: number,
+    time: number,
+    setTime: React.Dispatch<React.SetStateAction<number>>,
     paused: boolean
 }
 function formatTime(time:number) : string {
