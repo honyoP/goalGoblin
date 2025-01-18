@@ -2,19 +2,17 @@ import {MutableRefObject, useRef} from 'react';
 
 export default function Quest({which, actives, setActive, setQuest}:Props) {
     const currentName = useRef<string>("");
+    let resetName: boolean = true;
     if(actives[which-1] === 0)
     {
         currentStyle = disabledStyle;
     }
     else if(actives[which-1] === 1)
     {
-        currentStyle = activeStyle;
-        currentName.current = "Cancel quest";
         resetName = false;
-        /*make the text be a cancel quest thing that DOES NOT CHANGE */
+        currentStyle = activeStyle;
     }
     else{
-        resetName = true;
         return <></>
     }
     const handleClick = () => {
@@ -31,7 +29,6 @@ export default function Quest({which, actives, setActive, setQuest}:Props) {
             }
         }
         else{
-            resetName = false;
             setQuest((previous)=>({
                 ...previous,
                 name: currentName.current
@@ -41,12 +38,13 @@ export default function Quest({which, actives, setActive, setQuest}:Props) {
                     index === which - 1 ? 1 : 2
                 )
             );
+            resetName = false;
+            currentName.current = "Cancel quest."
         }
     };
     return <button style={currentStyle} onClick={()=>handleClick()}>
-        {GetRandomName(currentName)} ({GiveTime(which)})</button>
+        {GetRandomName(currentName, resetName)} ({GiveTime(which)})</button>
 };
-let resetName:boolean = true;
 
 function GiveTime(which:number)
 {
@@ -75,11 +73,12 @@ const disabledStyle = {
 }
 let currentStyle = disabledStyle;
 
-function GetRandomName(currentName:MutableRefObject<string>): string {
+function GetRandomName(currentName:MutableRefObject<string>, resetName:boolean): string {
     if(resetName)
     {
         let max = names.length;
         currentName.current = names[Math.floor(Math.random() * (max))];
+        resetName = false;
     }
     return currentName.current;
 }
