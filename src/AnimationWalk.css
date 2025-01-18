@@ -1,6 +1,6 @@
 .background {
     width: 100%;
-    height: 100px;
+    height: 35vh;
     background-image: url("./assets/eyeofrah.gif");
     background-size: cover;
     background-repeat: no-repeat;
@@ -18,9 +18,7 @@
     position: absolute;
     top: 20%;
     left: 50%;
-    transform: translateX(-50%);
     width: 100px;
-    height: 100px;
 }
 
 @keyframes gif-play {

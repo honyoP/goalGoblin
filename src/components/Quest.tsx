@@ -1,6 +1,6 @@
 import {MutableRefObject, useRef} from 'react';
 
-export default function Quest({which, actives, setActive}:Props) {
+export default function Quest({which, actives, setActive, setQuest}:Props) {
     const currentName = useRef<string>("");
     if(actives[which-1] === 0)
     {
@@ -9,8 +9,12 @@ export default function Quest({which, actives, setActive}:Props) {
     else if(actives[which-1] === 1)
     {
         currentStyle = activeStyle;
+        currentName.current = "Cancel quest";
+        resetName = false;
+        /*make the text be a cancel quest thing that DOES NOT CHANGE */
     }
     else{
+        resetName = true;
         return <></>
     }
     const handleClick = () => {
@@ -20,13 +24,18 @@ export default function Quest({which, actives, setActive}:Props) {
             resetName = true;
             if(confirm("Are you sure you want to cancel the quest?"))
             {
-                setActive(
-                    [0,0,0,0,0]
-                );
+                setQuest((previous)=>({
+                    ...previous,
+                    canceled: true
+                }));
             }
         }
         else{
             resetName = false;
+            setQuest((previous)=>({
+                ...previous,
+                name: currentName.current
+            }));
             setActive(
                 actives.map((_, index) => 
                     index === which - 1 ? 1 : 2
@@ -50,8 +59,9 @@ function GiveTime(which:number)
 
 type Props = {
     which: number,
-    actives: number[];
-    setActive: React.Dispatch<React.SetStateAction<number[]>>;
+    actives: number[],
+    setActive: React.Dispatch<React.SetStateAction<number[]>>,
+    setQuest: React.Dispatch<React.SetStateAction<{ name: string; time: number; done: boolean; canceled: boolean }>>
 };
 
 const activeStyle = {

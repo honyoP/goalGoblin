@@ -1,10 +1,18 @@
 import { useEffect } from "react";
 
-export default function Timer({time, setTime, paused}:TimerProps) {
+export default function Timer({time, setTime, paused, setQuest}:TimerProps) {
     useEffect(() => {
         if (paused) return;
         const interval = setInterval(() => {
             setTime((prevTime:number) => {
+                if(prevTime - 1 < 0)
+                {
+                    setQuest((previous)=>({
+                        ...previous,
+                        done: true
+                    }));
+                    return 0; /*timer ended */
+                }
                 return prevTime - 1;
             });
         }, 1000);
@@ -16,7 +24,8 @@ export default function Timer({time, setTime, paused}:TimerProps) {
 type TimerProps = {
     time: number,
     setTime: React.Dispatch<React.SetStateAction<number>>,
-    paused: boolean
+    paused: boolean,
+    setQuest: React.Dispatch<React.SetStateAction<{ name: string; time: number; done: boolean; canceled: boolean }>>
 }
 function formatTime(time:number) : string {
     let formatted = "";

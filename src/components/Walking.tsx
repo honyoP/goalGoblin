@@ -15,7 +15,7 @@ export default function Walking() {
     return (
         <div className={`background ${gifPaused ? "paused" : ""}`} onClick={() => setGifPaused(!gifPaused)}>
             <div className="character">
-                <img
+                <img width="0%"
                     src={spriteFrame === 0 ? sprite1 : sprite2}
                     alt="Character animation"
                 />

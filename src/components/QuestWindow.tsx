@@ -6,19 +6,20 @@ const containerStyle: React.CSSProperties = {
 };
 
 
-export default function QuestWindow({actives, setActive}:QuestProps ) {
-    return <div style={containerStyle}>{GetQuests(5, actives, setActive)}</div>;
+export default function QuestWindow({actives, setActive, setQuest}:QuestProps ) {
+    return <div style={containerStyle}>{GetQuests(5, {actives, setActive, setQuest})}</div>;
 }
 type QuestProps = {
     actives: number[],
-    setActive:React.Dispatch<React.SetStateAction<number[]>>
+    setActive:React.Dispatch<React.SetStateAction<number[]>>,
+    setQuest: React.Dispatch<React.SetStateAction<{ name: string; time: number; done: boolean; canceled: boolean}>>
 }
-function GetQuests(n:number, actives:number[], setActive:React.Dispatch<React.SetStateAction<number[]>>)
+function GetQuests(n:number, {actives, setActive, setQuest}:QuestProps)
 {
     const result = [];
     for(let i = 0; i < n; i++)
     {
-        result.push(<Quest which = {i + 1} actives={actives} setActive={setActive}/>);
+        result.push(<Quest which = {i + 1} actives={actives} setActive={setActive} setQuest={setQuest}/>);
     }
     return result;
 }
