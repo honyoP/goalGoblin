@@ -2,9 +2,32 @@ import QuestWindow from "./QuestWindow";
 import Timer from "./Timer";
 import {useState, useEffect} from 'react';
 import Walking from './Walking';
+import { QuestDuration } from "../types/QuestDuration";
+import { Storage } from "../storage";
+
+const handleUpload = async (duration: QuestDuration) => {
+    if(duration) {
+        console.log(duration.duration);
+        try {
+            await Storage.set('GoalGoblin_questExpiration', duration);
+        } catch (error)
+        {
+            console.error('Invalid JSON file:', error);
+        }
+    }
+}
+
+const loadDuration = async () => {
+    const storedDuration = await Storage.get<QuestDuration>('GoalGoblin_questExpiration');
+    console.log(storedDuration?.duration);
+}
+const testDur: QuestDuration = {
+    duration: new Date(Date.now())
+}
+
 export default function Adventure() {
     const [actives, setActive] = useState<number[]>([0,0,0,0,0]);
-    const [time, setTime] = useState<number>(0);
+    const [time, setTime] = useState(0);
     const [quest, setQuest] = useState(defQuest)
     useEffect(() => {
         const activeIndex = actives.findIndex(x=>x === 1);
