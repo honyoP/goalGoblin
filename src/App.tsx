@@ -4,6 +4,7 @@ import { Storage } from './storage'
 import { Character } from './types/Character'
 import Adventure from './components/AdventureWindow'
 import CharacterCreator from './pages/CharacterCreator'
+import CharacterView from './pages/CharacterView'
 
 function App() {
   const [user, setUser] = useState<Character | null>(null);
@@ -20,8 +21,7 @@ function App() {
   return (
     <>
       <Adventure/>
-      {user?.name}
-      {user? null : <CharacterCreator setCharacter={setUser} />}
+      {user? <CharacterView character={user} /> : <CharacterCreator setCharacter={setUser} />}
     </>
   )
 }
