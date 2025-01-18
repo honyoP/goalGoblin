@@ -1,22 +1,43 @@
+import {MutableRefObject, useRef} from 'react';
+
 export default function Quest({which, actives, setActive}:Props) {
+    const currentName = useRef<string>("");
     if(actives[which-1] === 0)
     {
         currentStyle = disabledStyle;
     }
-    else{
+    else if(actives[which-1] === 1)
+    {
         currentStyle = activeStyle;
     }
+    else{
+        return <></>
+    }
     const handleClick = () => {
-        console.log("i'm fucking alive");
-        setActive(
-            actives.map((value, index) => 
-                index === which - 1 ? 1 : value
-            )
-        );
+        let val = actives[which - 1];
+        if(val === 1)
+        {
+            resetName = true;
+            if(confirm("Are you sure you want to cancel the quest?"))
+            {
+                setActive(
+                    [0,0,0,0,0]
+                );
+            }
+        }
+        else{
+            resetName = false;
+            setActive(
+                actives.map((_, index) => 
+                    index === which - 1 ? 1 : 2
+                )
+            );
+        }
     };
     return <button style={currentStyle} onClick={()=>handleClick()}>
-        {GetRandomName()} ({GiveTime(which)})</button>
+        {GetRandomName(currentName)} ({GiveTime(which)})</button>
 };
+let resetName:boolean = true;
 
 function GiveTime(which:number)
 {
@@ -44,9 +65,14 @@ const disabledStyle = {
 }
 let currentStyle = disabledStyle;
 
-function GetRandomName(): string {
-    let max = names.length;
-    return names[Math.floor(Math.random() * (max))];
+function GetRandomName(currentName:MutableRefObject<string>): string {
+    console.log(resetName);
+    if(resetName)
+    {
+        let max = names.length;
+        currentName.current = names[Math.floor(Math.random() * (max))];
+    }
+    return currentName.current;
 }
 const names = ["Hunting deer", "Hunting wolves", "Hunting women", 
     "Gathering plants", "Finding reasons to live",

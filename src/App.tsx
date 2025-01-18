@@ -3,6 +3,7 @@ import './App.css'
 import { Storage } from './storage'
 import { Character } from './types/Character'
 import QuestWindow from './components/QuestWindow'
+import Timer from './components/Timer';
 import CharacterCreator from './pages/CharacterCreator'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <>
+      <Timer/>
       <QuestWindow/>
       {user?.name}
       {user? null : <CharacterCreator setCharacter={setUser} />}
