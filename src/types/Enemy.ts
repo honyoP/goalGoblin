@@ -14,4 +14,7 @@ export type Enemy = {
     intelligence: number,
     dexterity: number,
     vitality: number,
+
+    armor: number,
+    damage: [number, number],
 }

@@ -7,13 +7,22 @@ export type Character = {
     experience: number,
     skill_points: number,
     shekels: number,
+
     health: number,
+    max_health: number,
     mana: number,
+    max_mana: number,
     stamina: number,
+    max_stamina: number,
+
     strength: number,
     intelligence: number,
     dexterity: number,
     vitality: number,
+
+    armor: number,
+    damage: [number, number],
+
     total_time_spent: string,
     total_monsters_slain: number,
     total_shekels_earned: number,

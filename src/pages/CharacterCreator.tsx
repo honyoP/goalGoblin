@@ -20,23 +20,31 @@ const CharacterCreator = ({ setCharacter }: Props) => {
     }
 
     const characterTemplate: Character = {
-        dexterity: 12,
-        experience: 0,
-        health: 15,
-        intelligence: 10,
         level: 1,
-        mana: 15,
+        experience: 0,
+        skill_points: 0,
         name: name,
         shekels: 0,
-        skill_points: 0,
+
+        health: 15,
+        max_health: 15,
+        mana: 15,
+        max_mana: 15,
         stamina: 15,
-        strength: 15,
+        max_stamina: 15,
+
+        armor: 0,
+        damage: [1, 4],
+
+        strength: 1,
+        dexterity: 1,
+        intelligence: 1,
+        vitality: 1,
         total_items_earned: 0,
         total_monsters_slain: 0,
         total_quests_done: 0,
         total_shekels_earned: 0,
         total_time_spent: "",
-        vitality: 10,
     }
 
     return (
