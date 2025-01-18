@@ -3,33 +3,45 @@ import { Enemy } from "../types/Enemy";
 
 export const startCombat = (user: Character, enemy: Enemy) => {
     let turns: Turn[] = [];
+    let turnId: number = 0;
+    let userWin = false;
     while (user.health > 0 || enemy.health > 0)
     {
+        let enemyDmg = 0;
+        let userDmg = 0;
         if (user.dexterity > enemy.dexterity)
         {
-            enemy.health = evaluateTurn(user.damage, enemy.health);
+            userDmg = rollDamage(user.damage);
+            enemy.health -= userDmg;
             if (enemy.health <= 0)
+            {
+                userWin = true;
                 break;
-            user.health = evaluateTurn(enemy.damage, user.health);
+            }
+            enemyDmg = rollDamage(enemy.damage);
+            user.health -= enemyDmg;
         } else {
-            user.health = evaluateTurn(enemy.damage, user.health);
+            enemyDmg = rollDamage(enemy.damage);
+            user.health -= enemyDmg;
             if (user.health <= 0)
                 break;
-            enemy.health = evaluateTurn(user.damage, enemy.health);
+            userDmg = rollDamage(user.damage);
+            enemy.health -= userDmg;
         }
+        let turn: Turn = {
+            id: turnId++,
+            enemy_dmg: enemyDmg,
+            enemy_health: enemy.health,
+            user_dmg: userDmg,
+            user_health: user.health
+        }
+        turns.push(turn);
     }
 
     return {
+        user_win: userWin,
         turns: turns,
     };
-}
-
-const evaluateTurn = (
-    attackerDmg: [number, number],
-    defHp: number,
-) => {
-    const finUdmg = rollDamage(attackerDmg);
-    return defHp - finUdmg;
 }
 
 const rollDamage = (dmg: [number, number]) => {

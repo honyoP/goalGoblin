@@ -5,9 +5,12 @@ import { Character } from './types/Character'
 import CharacterView from './pages/CharacterView'
 import Adventure from './components/AdventureWindow'
 import { MemoryRouter as Router, Routes, Route } from 'react-router'
+import CombatView from './pages/CombatView'
+import { Enemy } from './types/Enemy'
 
 function App() {
   const [user, setUser] = useState<Character | null>(null);
+  const [enemy, setEnemy] = useState<Enemy | null>(null);
 
   useEffect(() => {
     loadCharacter();
@@ -23,6 +26,7 @@ function App() {
       <Routes>
         <Route path='/' element={<CharacterView character={user} setCharacter={setUser} />} />
         <Route path='/adventure' element={<Adventure />} />
+        <Route path='/combat' element={<CombatView character={user!} enemy={enemy!}/>} />
       </Routes>
     </Router>
   )
