@@ -25,8 +25,12 @@ type CharProfileProps = {
 const CharProfile = ({ character }: CharProfileProps) => {
     const navigate = useNavigate();
 
-    const handleNavigate = () => {
+    const handleNavigateAdventure = () => {
         navigate('/adventure');
+    }
+
+    const handleNavigateBackpack = () => {
+        navigate('/backpack');
     }
     return (
         <div>
@@ -39,7 +43,8 @@ const CharProfile = ({ character }: CharProfileProps) => {
             <p>{`Dexterity: ${character.dexterity}`}</p>
             <p>{`Intelligence: ${character.intelligence}`}</p>
             <p>{`Vitality: ${character.vitality}`}</p>
-            <button onClick={handleNavigate}>Adventure!</button>
+            <button onClick={handleNavigateAdventure}>Adventure!</button>
+            <button onClick={handleNavigateBackpack}>Backpack</button>
         </div>
     );
 }

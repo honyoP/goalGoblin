@@ -3,15 +3,15 @@ export type Equipment = {
     name: string,
     type: EquipmentTypes,
     damage: [number, number],
-    enchantments: [],
+    enchantments: [] | null,
     
-    health: number,
-    mana: number,
-    stamina: number,
-    strength: number,
-    intelligence: number,
-    dexterity: number,
-    vitality: number,
+    health: number | null,
+    mana: number | null,
+    stamina: number | null,
+    strength: number | null,
+    intelligence: number | null,
+    dexterity: number | null,
+    vitality: number | null,
 }
 
 export enum EquipmentTypes {

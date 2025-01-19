@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Storage } from "../storage";
 import { Backpack, Character } from "../types/Character";
+import { Equipment, EquipmentTypes } from "../types/Equipment";
 
 type Props = {
     setCharacter: (character: Character) => void,
@@ -14,6 +15,7 @@ const CharacterCreator = ({ setCharacter }: Props) => {
             try {
                 await Storage.set('GoalGoblin_userCharacter', character);
                 await Storage.set('GoalGoblin_backpack', starterBackpack);
+                await Storage.set('GoalGoblin_equipmentData', startedEquipment)
             } catch (error) {
                 console.error('Invalid JSON file:', error);
             }
@@ -53,8 +55,39 @@ const CharacterCreator = ({ setCharacter }: Props) => {
         max_capacity: 20,
         total_items: 0,
         item_ids: [],
-        equipment_ids: [],
+        equipment_ids: [0, 1],
     }
+
+    const startedEquipment: Equipment[] = [
+        {
+            id: 0,
+            damage: [2, 6],
+            name: "Stick of Beating",
+            type: EquipmentTypes.sword,
+            dexterity: null,
+            enchantments: null,
+            health: null,
+            intelligence: null,
+            mana: null,
+            stamina: null,
+            strength: null,
+            vitality: null,
+        },
+        {
+            id: 1,
+            damage: [1, 4],
+            name: "Boots of Walking",
+            type: EquipmentTypes.boots,
+            dexterity: null,
+            enchantments: null,
+            health: null,
+            intelligence: null,
+            mana: null,
+            stamina: null,
+            strength: null,
+            vitality: null,
+        },
+    ]
 
     return (
         <div>
