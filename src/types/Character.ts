@@ -2,6 +2,7 @@ export type Character = {
     name: string,
     level: number,
     experience: number,
+    experience_to_next_level: number,
     skill_points: number,
     shekels: number,
 
@@ -46,4 +47,11 @@ export type Backpack = {
     total_items: number,
     item_ids: number[],
     equipment_ids: number[],
+}
+
+export enum CharacterStats {
+    strength,
+    intelligence,
+    dexterity,
+    vitality,
 }

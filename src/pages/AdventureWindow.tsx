@@ -103,9 +103,11 @@ const ActiveQuest = ({quest, setQuest, setEnemy}: ActiveQuestProps) => {
         setQuest(null);
     }
 
-    const handleOnClickComplete = () => {
-        const validEnemies: Enemy[] = EnemyDb.filter((t) => t.level <= 10);
-        setEnemy(validEnemies[Math.floor(Math.random() * validEnemies.length)]);
+    const handleOnClickComplete = async () => {
+        const validEnemies: Enemy[] = EnemyDb.filter((t) => t.level <= 1);
+        setEnemy(validEnemies[Math.floor(Math.random() * (validEnemies.length - 1))]);
+        setQuest(null);
+        await Storage.remove('GoalGoblin_activeQuest');
         navigate('/combat');
     }
 
@@ -134,7 +136,7 @@ function GetQuests(n: number): Quest[] {
 }
 
 const questTimes = [
-    1,
+    0,
     15,
     30,
     60,

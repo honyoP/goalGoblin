@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Storage } from "../storage";
 import { Backpack, Character } from "../types/Character";
-import { Equipment, EquipmentTypes } from "../types/Equipment";
+import { DamageType, Equipment, EquipmentTypes, rarity } from "../types/Equipment";
 
 type Props = {
     setCharacter: (character: Character) => void,
@@ -25,6 +25,7 @@ const CharacterCreator = ({ setCharacter }: Props) => {
     const characterTemplate: Character = {
         level: 1,
         experience: 0,
+        experience_to_next_level: 10,
         skill_points: 0,
         name: name,
         shekels: 0,
@@ -64,28 +65,22 @@ const CharacterCreator = ({ setCharacter }: Props) => {
             damage: [2, 6],
             name: "Stick of Beating",
             type: EquipmentTypes.sword,
-            dexterity: null,
             enchantments: null,
-            health: null,
-            intelligence: null,
-            mana: null,
-            stamina: null,
-            strength: null,
-            vitality: null,
+            item_level: 1,
+            effect: [],
+            rarity: rarity.very_common,
+            damage_type: DamageType.physical
         },
         {
             id: 1,
             damage: [1, 4],
             name: "Boots of Walking",
             type: EquipmentTypes.boots,
-            dexterity: null,
             enchantments: null,
-            health: null,
-            intelligence: null,
-            mana: null,
-            stamina: null,
-            strength: null,
-            vitality: null,
+            item_level: 1,
+            effect: [],
+            rarity: rarity.very_common,
+            damage_type: DamageType.physical
         },
     ]
 

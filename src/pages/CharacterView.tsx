@@ -36,9 +36,10 @@ const CharProfile = ({ character }: CharProfileProps) => {
         <div>
             <h2>{`Name: ${character.name}`}</h2>
             <p>{`Level: ${character.level}`}</p>
-            <p>{`Health: ${character.max_health}/${character.health}`}</p>
-            <p>{`Mana: ${character.max_mana}/${character.mana}`}</p>
-            <p>{`Stamina: ${character.max_stamina}/${character.stamina}`}</p>
+            <p>{`Experience: ${character.experience}/${character.experience_to_next_level}`}</p>
+            <p>{`Health: ${character.health}/${character.max_health}`}</p>
+            <p>{`Mana: ${character.mana}/${character.max_mana}`}</p>
+            <p>{`Stamina: ${character.stamina}/${character.max_stamina}`}</p>
             <p>{`Strength: ${character.strength}`}</p>
             <p>{`Dexterity: ${character.dexterity}`}</p>
             <p>{`Intelligence: ${character.intelligence}`}</p>

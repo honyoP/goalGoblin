@@ -1,17 +1,29 @@
+import { CharacterStats } from "./Character"
+
 export type Equipment = {
     id: number,
     name: string,
+    rarity: rarity,
+    item_level: number,
     type: EquipmentTypes,
     damage: [number, number],
+    damage_type: DamageType,
     enchantments: [] | null,
-    
-    health: number | null,
-    mana: number | null,
-    stamina: number | null,
-    strength: number | null,
-    intelligence: number | null,
-    dexterity: number | null,
-    vitality: number | null,
+    effect: EquipmentEffect[]
+}
+
+export enum DamageType {
+    physical = "physical",
+    magical = "magical",
+}
+
+export enum rarity {
+    very_common,
+    common,
+    uncommon,
+    rare,
+    epic,
+    legendary
 }
 
 export enum EquipmentTypes {
@@ -27,4 +39,10 @@ export enum EquipmentTypes {
     sword = "sword",
     staff = "staff",
     bow = "bow",
+}
+
+export type EquipmentEffect = {
+    stat: CharacterStats,
+    buff: number | null,
+    debuff: number | null,
 }

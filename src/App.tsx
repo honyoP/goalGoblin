@@ -17,6 +17,12 @@ function App() {
     loadCharacter();
   }, [])
 
+  useEffect(() => {
+    saveCharacter();
+  }, [user])
+  const saveCharacter = async () => {
+    await Storage.set('GoalGoblin_userCharacter', user);
+  }
   const loadCharacter = async () => {
     const storedCharacter = await Storage.get<Character>('GoalGoblin_userCharacter');
     setUser(storedCharacter || null);
@@ -27,7 +33,7 @@ function App() {
       <Routes>
         <Route path='/' element={<CharacterView character={user} setCharacter={setUser} />} />
         <Route path='/adventure' element={<Adventure setEnemy={setEnemy} />} />
-        <Route path='/combat' element={<CombatView character={user!} enemy={enemy!}/>} />
+        <Route path='/combat' element={<CombatView character={user!} enemy={enemy!} setCharacter={setUser}/>} />
         <Route path='/backpack' element={<BackpackView />} />
       </Routes>
     </Router>
